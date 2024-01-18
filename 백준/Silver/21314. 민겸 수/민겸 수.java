@@ -10,14 +10,13 @@ public class Main {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String str = br.readLine();
-        String max = "";
-        String min = "";
+        StringBuilder max = new StringBuilder();
+        StringBuilder min = new StringBuilder();
 
         // 먼저 K가 존재하는지 확인을 하고 K를 기준으로 분리시켜 준다.
         if (!str.contains("K")) {
-            max = "1".repeat(str.length());
-            min = "1" + "0".repeat(str.length()-1);
-//            min = "" + (int) Math.pow(10, str.length() - 1);
+            max = new StringBuilder("1".repeat(str.length()));
+            min = new StringBuilder("1" + "0".repeat(str.length() - 1));
         } else {
             str = str.replaceAll("K", "K-");
             if (str.charAt(str.length() - 1) == '-') str = str.substring(0, str.length() - 1);
@@ -26,17 +25,14 @@ public class Main {
             for (int i = 0; i < arr.length; i++) {
                 arr[i] = st.nextToken();
                 if (arr[i].contains("K")) {
-                    max += "5" + "0".repeat(arr[i].length()-1);
-//                    max += 5 * ((int) Math.pow(10, arr[i].length() - 1));
-                    if (arr[i].contains("M")) min += "1" + "0".repeat(arr[i].length()-2) + "5";
-//                    if (arr[i].contains("M")) min += (int) Math.pow(10, arr[i].length() - 1) + 5;
-                    else min += "5";
+                    max.append("5").append("0".repeat(arr[i].length() - 1));
+                    if (arr[i].contains("M")) min.append("1").append("0".repeat(arr[i].length() - 2)).append("5");
+                    else min.append("5");
                 } else {
                     for (int j = 0; j < arr[i].length(); j++) {
-                        max += "1";
+                        max.append("1");
                     }
-                    min += "1" + "0".repeat(arr[i].length()-1);
-//                    min += (int) Math.pow(10, arr[i].length() - 1);
+                    min.append("1").append("0".repeat(arr[i].length() - 1));
                 }
             }
         }
