@@ -1,13 +1,13 @@
 class Solution {
     public int solution(int n) {
         
-        String temp = "" + n;
         int answer = 0;
-
-        for (char c : temp.toCharArray()) {
-            answer += c - '0';
+        
+        while(n > 0){
+            answer += n % 10;
+            n /= 10;
         }
-
+        
         return answer;
     }
 }
